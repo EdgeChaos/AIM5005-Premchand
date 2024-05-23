@@ -1,16 +1,16 @@
-from aim5005.linear_regression import LinearRegresion
+from aim5005.linear_regression import LinearRegression
 import pytest
 import random
 random.seed(10)
 
 def test_initialize_linear_regression():
-    lr = LinearRegresion()
-    assert isinstance(lr, LinearRegresion), "lr is not a LinearRegression object"
+    lr = LinearRegression()
+    assert isinstance(lr, LinearRegression), "lr is not a LinearRegression object"
     
 def test_lr_fits():
     x = [i for i in range(-100, 110, 10)]
-    y = [0.1*i+5 for i in x]
-    lr = LinearRegresion()
+    y = [0.1 * i + 5 for i in x]
+    lr = LinearRegression()
     lr.fit(x, y)
     
     assert round(lr.beta, 3) == 0.105, "beta is not 0.105"
@@ -18,8 +18,8 @@ def test_lr_fits():
     
 def test_lr_predicts():
     x = [i for i in range(-100, 110, 10)]
-    y_noise = [0.1*i+5 + random.uniform(-5,5) for i in x]
-    lr = LinearRegresion()
+    y_noise = [0.1 * i + 5 + random.uniform(-5, 5) for i in x]
+    lr = LinearRegression()
     lr.fit(x, y_noise)
     
     assert (round(lr.beta, 3) > 0.08) and (round(lr.beta) < 0.110), "beta is outside range (.08, .110)"
@@ -27,8 +27,8 @@ def test_lr_predicts():
     
 def test_lr_predict():
     x = [i for i in range(-100, 110, 10)]
-    y_noise = [0.1*i+5 + random.uniform(-5,5) for i in x]
-    lr = LinearRegresion()
+    y_noise = [0.1 * i + 5 + random.uniform(-5, 5) for i in x]
+    lr = LinearRegression()
     lr.fit(x, y_noise)
     y_hat = lr.predict(x)
     

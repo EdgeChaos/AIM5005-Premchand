@@ -3,13 +3,12 @@ import numpy as np
 import unittest
 from unittest.case import TestCase
 
-### TO NOT MODIFY EXISTING TESTS
+### DO NOT MODIFY EXISTING TESTS
 
 class TestFeatures(TestCase):
     def test_initialize_min_max_scaler(self):
         scaler = MinMaxScaler()
         assert isinstance(scaler, MinMaxScaler), "scaler is not a MinMaxScaler object"
-        
         
     def test_min_max_fit(self):
         scaler = MinMaxScaler()
@@ -17,7 +16,6 @@ class TestFeatures(TestCase):
         scaler.fit(data)
         assert (scaler.maximum == np.array([1., 18.])).all(), "scaler fit does not return maximum values [1., 18.] "
         assert (scaler.minimum == np.array([-1., 2.])).all(), "scaler fit does not return maximum values [-1., 2.] " 
-        
         
     def test_min_max_scaler(self):
         data = [[-1, 2], [-0.5, 6], [0, 10], [1, 18]]
@@ -44,13 +42,14 @@ class TestFeatures(TestCase):
         data = [[0, 0], [0, 0], [1, 1], [1, 1]]
         expected = np.array([0.5, 0.5])
         scaler.fit(data)
-        assert (scaler.mean == expected).all(), "scaler fit does not return expected mean {}. Got {}".format(expected, scaler.mean)
+        assert (scaler.mean == expected).all(), "Scaler mean does not return expected values. Expect [0.5, 0.5]. Got: {}".format(scaler.mean)
         
     def test_standard_scaler_transform(self):
         scaler = StandardScaler()
         data = [[0, 0], [0, 0], [1, 1], [1, 1]]
         expected = np.array([[-1., -1.], [-1., -1.], [1., 1.], [1., 1.]])
         scaler.fit(data)
+        result = scaler.transform(data)  # Define 'result' here
         assert (result == expected).all(), "Scaler transform does not return expected values. Expect {}. Got: {}".format(expected.reshape(1,-1), result.reshape(1,-1))
         
     def test_standard_scaler_single_value(self):
